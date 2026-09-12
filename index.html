@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Panda Birthday Surprise 🐼</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    font-family: Georgia, serif;
+    background: #111;
+    color: white;
+}
+
+/* ============================= */
+/* SLIDES */
+/* ============================= */
+
+.slide {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.slide.active {
+    display: flex;
+}
+
+/* ============================= */
+/* MOVING PANDAS */
+/* ============================= */
+
+.panda {
+    position: absolute;
+    z-index: 4;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.panda1 {
+    bottom: 12px;
+    left: -70px;
+    font-size: 34px;
+    animation: crawlRight 11s linear infinite;
+}
+
+.panda2 {
+    top: 17%;
+    right: -70px;
+    font-size: 30px;
+    animation: crawlLeft 14s linear infinite;
+}
+
+.panda3 {
+    bottom: 27%;
+    left: -60px;
+    font-size: 25px;
+    animation: crawlRight 17s linear infinite;
+}
+
+.panda4 {
+    top: 68%;
+    right: -60px;
+    font-size: 27px;
+    animation: crawlLeft 19s linear infinite;
+}
+
+.panda5 {
+    top: 9%;
+    left: -65px;
+    font-size: 29px;
+    animation: crawlRight 22s linear infinite;
+}
+
+@keyframes crawlRight {
+
+    0% {
+        transform: translateX(0) scaleX(1);
+    }
+
+    45% {
+        transform: translateX(55vw) translateY(-5px) scaleX(1);
+    }
+
+    50% {
+        transform: translateX(60vw) translateY(0) scaleX(1);
+    }
+
+    100% {
+        transform: translateX(120vw) scaleX(1);
+    }
+}
+
+@keyframes crawlLeft {
+
+    0% {
+        transform: translateX(0) scaleX(-1);
+    }
+
+    45% {
+        transform: translateX(-55vw) translateY(-5px) scaleX(-1);
+    }
+
+    50% {
+        transform: translateX(-60vw) translateY(0) scaleX(-1);
+    }
+
+    100% {
+        transform: translateX(-120vw) scaleX(-1);
+    }
+}
+
+/* ============================= */
+/* BUTTON */
+/* ============================= */
+
+button {
+    border: none;
+    border-radius: 30px;
+    padding: 13px 25px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 20px;
+    background: white;
+    color: #222;
+    transition: .3s;
+    position: relative;
+    z-index: 20;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+/* ============================= */
+/* SLIDE 1 */
+/* ============================= */
+
+#slide1 {
+    background:
+    radial-gradient(circle at center, #29352c, #08100b);
+}
+
+.secret {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    max-width: 450px;
+}
+
+.lock {
+    font-size: 58px;
+    margin-bottom: 15px;
+}
+
+.secret h1 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.secret p {
+    color: #ddd;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.pin {
+    width: 210px;
+    padding: 14px;
+    border-radius: 30px;
+    border: 1px solid #aaa;
+    background: #151a17;
+    color: white;
+    text-align: center;
+    font-size: 19px;
+    outline: none;
+}
+
+.error {
+    height: 25px;
+    margin-top: 12px;
+    color: #ffb5b5;
+}
+
+/* ============================= */
+/* SLIDE 2 */
+/* ============================= */
+
+#slide2 {
+    background:
+    linear-gradient(135deg, #37221c, #101510);
+}
+
+.gift-area {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+}
+
+.gift-area h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.gift-area p {
+    color: #ddd;
+}
+
+.gift {
+    width: 200px;
+    height: 160px;
+    margin: 45px auto 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.gift-body {
+    position: absolute;
+    width: 190px;
+    height: 120px;
+    bottom: 0;
+    left: 5px;
+    background: #d77a8a;
+    border-radius: 10px;
+}
+
+.gift-lid {
+    position: absolute;
+    width: 215px;
+    height: 45px;
+    left: -7px;
+    top: 5px;
+    background: #ed9cab;
+    border-radius: 8px;
+    z-index: 3;
+    transition: 1s;
+}
+
+.ribbon-v {
+    position: absolute;
+    width: 28px;
+    height: 155px;
+    background: #ffe0a6;
+    left: 86px;
+    bottom: 0;
+    z-index: 2;
+}
+
+.ribbon-h {
+    position: absolute;
+    width: 215px;
+    height: 22px;
+    background: #ffe0a6;
+    left: -7px;
+    top: 17px;
+    z-index: 4;
+}
+
+.gift.open .gift-lid {
+    transform: translateY(-100px) rotate(-10deg);
+}
+
+.gift-message {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 1s;
+    margin-top: 15px;
+    font-size: 19px;
+}
+
+.gift-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================= */
+/* SLIDE 3 */
+/* ============================= */
+
+#slide3 {
+    background:
+    linear-gradient(rgba(18,40,20,.5), rgba(18,40,20,.7)),
+    #26482b;
+}
+
+.gallery {
+    position: relative;
+    z-index: 10;
+    width: 94%;
+    max-width: 1000px;
+}
+
+.gallery h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.gallery-subtitle {
+    margin-bottom: 20px;
+    color: #eee;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    max-height: 62vh;
+}
+
+.photo-card {
+    background: white;
+    padding: 7px;
+    padding-bottom: 25px;
+    color: #222;
+    box-shadow: 0 8px 18px #0006;
+    transform: rotate(-2deg);
+    transition: .4s;
+    cursor: pointer;
+}
+
+.photo-card:nth-child(even) {
+    transform: rotate(2deg);
+}
+
+.photo-card:hover {
+    transform: rotate(0deg) scale(1.06);
+    z-index: 20;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-card p {
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+/* ============================= */
+/* SLIDE 4 */
+/* ============================= */
+
+#slide4 {
+    background:
+    linear-gradient(rgba(38,72,43,.5), rgba(12,22,13,.8)),
+    #355c38;
+}
+
+.funny {
+    position: relative;
+    z-index: 10;
+    max-width: 650px;
+    width: 90%;
+}
+
+.funny h1 {
+    font-size: 36px;
+    margin-bottom: 25px;
+}
+
+.funny-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.funny-box {
+    background: #fff4c7;
+    color: #222;
+    padding: 20px;
+    width: 170px;
+    border-radius: 8px;
+    transform: rotate(-3deg);
+    box-shadow: 0 8px 20px #0005;
+    cursor: pointer;
+    transition: .35s;
+}
+
+.funny-box:nth-child(2) {
+    transform: rotate(3deg);
+}
+
+.funny-box:nth-child(3) {
+    transform: rotate(-2deg);
+}
+
+.funny-box:hover {
+    transform: rotate(0deg) scale(1.08);
+}
+
+.funny-box:active {
+    transform: scale(.96);
+}
+
+/* ============================= */
+/* PHOTO POPUP */
+/* ============================= */
+
+.photo-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.82);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.photo-popup.show {
+    display: flex;
+}
+
+.popup-content {
+    background: #fff3d2;
+    padding: 15px;
+    border-radius: 15px;
+    max-width: 90%;
+    max-height: 85vh;
+    box-shadow: 0 15px 50px #000;
+    animation: popupIn .35s ease;
+}
+
+.popup-content img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 65vh;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.popup-title {
+    color: #28211c;
+    font-size: 20px;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.close-popup {
+    background: #28211c;
+    color: white;
+    margin-top: 12px;
+    padding: 10px 22px;
+}
+
+@keyframes popupIn {
+
+    from {
+        opacity: 0;
+        transform: scale(.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ============================= */
+/* SLIDE 5 */
+/* ============================= */
+
+#slide5 {
+    background:
+    radial-gradient(circle at center, #3c2e43, #100d14);
+}
+
+.note {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    max-width: 650px;
+}
+
+.note-paper {
+    background: #fff3d2;
+    color: #28211c;
+    padding: 35px;
+    border-radius: 8px;
+    box-shadow: 0 15px 40px #0007;
+    line-height: 1.7;
+}
+
+.note-paper h1 {
+    margin-bottom: 20px;
+}
+
+/* ============================= */
+/* SLIDE 6 */
+/* ============================= */
+
+#slide6 {
+    background:
+    radial-gradient(circle at center, #553c5d, #140d18);
+}
+
+.final {
+    position: relative;
+    z-index: 10;
+    max-width: 750px;
+    width: 90%;
+    height: 88vh;
+    overflow-y: auto;
+    padding: 20px 10px;
+}
+
+.cake {
+    font-size: 75px;
+    animation: cakeBounce 2s infinite;
+}
+
+@keyframes cakeBounce {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.final h1 {
+    font-size: 40px;
+    margin: 15px 0 25px;
+}
+
+.final p {
+    line-height: 1.7;
+    color: #eee;
+    font-size: 15px;
+}
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media(max-width:700px) {
+
+    .secret h1,
+    .gift-area h1,
+    .gallery h1,
+    .funny h1,
+    .final h1 {
+        font-size: 26px;
+    }
+
+    .secret p {
+        font-size: 14px;
+    }
+
+    .panda1 {
+        font-size: 29px;
+    }
+
+    .panda2 {
+        font-size: 26px;
+    }
+
+    .panda3 {
+        font-size: 22px;
+    }
+
+    .panda4 {
+        font-size: 24px;
+    }
+
+    .panda5 {
+        font-size: 25px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        overflow-y: auto;
+        max-height: 55vh;
+    }
+
+    .photo-card {
+        padding: 5px;
+        padding-bottom: 18px;
+    }
+
+    .photo-card img {
+        height: 100px;
+    }
+
+    .photo-card p {
+        font-size: 10px;
+    }
+
+    .funny-box {
+        width: 145px;
+        padding: 14px;
+        font-size: 13px;
+    }
+
+    .note-paper {
+        padding: 22px;
+        font-size: 14px;
+        max-height: 65vh;
+        overflow-y: auto;
+    }
+
+    .final {
+        height: 88vh;
+        width: 94%;
+        padding: 15px 8px;
+    }
+
+    .final h1 {
+        font-size: 25px;
+        margin: 12px 0 20px;
+    }
+
+    .final p {
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    .cake {
+        font-size: 60px;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .popup-content {
+        max-width: 94%;
+    }
+
+    .popup-content img {
+        max-height: 60vh;
+    }
+}
+
+@media(max-width:380px) {
+
+    .photo-grid {
+        max-height: 50vh;
+    }
+
+    .photo-card img {
+        height: 80px;
+    }
+
+    .funny-box {
+        width: 130px;
+        padding: 10px;
+    }
+
+    .note-paper {
+        font-size: 13px;
+        padding: 18px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ============================= -->
+<!-- SLIDE 1 -->
+<!-- ============================= -->
+
+<section class="slide active" id="slide1">
+
+    <div class="panda panda1">🐼</div>
+    <div class="panda panda2">🐼🎀</div>
+    <div class="panda panda3">🐼🌸</div>
+    <div class="panda panda4">🐼💗</div>
+    <div class="panda panda5">🐼🎈</div>
+
+    <div class="secret">
+
+        <div class="lock">🔐</div>
+
+        <h1>Shhh... A Little Secret</h1>
+
+        <p>
+            Something special is waiting for you...<br>
+            But first, you need to unlock it. 🐼
+        </p>
+
+        <input
+            id="pin"
+            class="pin"
+            type="password"
+            maxlength="4"
+            placeholder="Enter 4-digit PIN"
+        >
+
+        <br>
+
+        <button onclick="unlock()">
+            Unlock 🐾
+        </button>
+
+        <div class="error" id="error"></div>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- SLIDE 2 -->
+<!-- ============================= -->
+
+<section class="slide" id="slide2">
+
+    <div class="panda panda1">🐼🎁</div>
+    <div class="panda panda2">🐼🎀</div>
+    <div class="panda panda3">🐼🌸</div>
+    <div class="panda panda4">🐼💗</div>
+    <div class="panda panda5">🐼🎈</div>
+
+    <div class="gift-area">
+
+        <h1>A Panda Has Something For You 🎁</h1>
+
+        <p>
+            He travelled all this way just to bring you this...
+        </p>
+
+        <div
+            class="gift"
+            id="gift"
+            onclick="openGift()"
+        >
+
+            <div class="gift-lid"></div>
+            <div class="gift-body"></div>
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+
+        </div>
+
+        <div
+            class="gift-message"
+            id="giftMessage"
+        >
+            You found the surprise! 🐼✨
+        </div>
+
+        <button
+            id="giftNext"
+            style="display:none;"
+            onclick="nextSlide(3)"
+        >
+            Follow the Panda → 🐾
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- SLIDE 3 -->
+<!-- ============================= -->
+
+<section class="slide" id="slide3">
+
+    <div class="panda panda1">🐼📸</div>
+    <div class="panda panda2">🐼🌸</div>
+    <div class="panda panda3">🐼💗</div>
+    <div class="panda panda4">🐼🎀</div>
+    <div class="panda panda5">🐼✨</div>
+
+    <div class="gallery">
+
+        <h1>🐼 Our Little Memory Forest 📸</h1>
+
+        <p class="gallery-subtitle">
+            A few moments worth keeping forever...
+        </p>
+
+        <div class="photo-grid">
+
+            <!-- PHOTO 1 -->
+            <div class="photo-card"
+                 onclick="showPhoto('images/photo1.jpg.jpeg','Memory #1 ❤️')">
+                <img src="images/photo1.jpg.jpeg" alt="Memory 1">
+                <p>Memory #1 ❤️</p>
+            </div>
+
+            <!-- PHOTO 2 -->
+            <div class="photo-card"
+                 onclick="showPhoto('images/photo2.jpg.jpeg','Memory #2 ✨')">
+                <img src="images/photo2.jpg.jpeg" alt="Memory 2">
+                <p>Memory #2 ✨</p>
+            </div>
+
+            <!-- PHOTO 3 -->
+            <div class="photo-card"
+                 onclick="showPhoto('images/photo3.jpg.jpeg','Memory #3 🐼')">
+                <img src="images/photo3.jpg.jpeg" alt="Memory 3">
+                <p>Memory #3 🐼</p>
+            </div>
+
+            <!-- PHOTO 4 -->
+            <div class="photo-card"
+                 onclick="showPhoto('images/photo4.jpg.jpeg','Memory #4 💫')">
+                <img src="images/photo4.jpg.jpeg" alt="Memory 4">
+                <p>Memory #4 💫</p>
+            </div>
+
+            <!-- PHOTO 5 -->
+            <div class="photo-card"
+                 onclick="showPhoto('images/photo5.jpg.jpeg','Memory #5 ❤️')">
+                <img src="images/photo5.jpg.jpeg" alt="Memory 5">
+                <p>Memory #5 ❤️</p>
+            </div>
+
+            <!-- PHOTO 6 -->
+            <div class="photo-card"
+                 onclick="showPhoto('images/photo6.jpg.jpeg','Memory #6 🌸')">
+                <img src="images/photo6.jpg.jpeg" alt="Memory 6">
+                <p>Memory #6 🌸</p>
+            </div>
+
+            <!-- PHOTO 7 -->
+            <div class="photo-card"
+                 onclick="showPhoto('images/photo7.jpg.jpeg','Memory #7 🐾')">
+                <img src="images/photo7.jpg.jpeg" alt="Memory 7">
+                <p>Memory #7 🐾</p>
+            </div>
+
+            <!-- PHOTO 8 -->
+            <div class="photo-card"
+                 onclick="showPhoto('images/photo8.jpg.jpeg','Memory #8 ✨')">
+                <img src="images/photo8.jpg.jpeg" alt="Memory 8">
+                <p>Memory #8 ✨</p>
+            </div>
+
+            <!-- PHOTO 9 -->
+            <div class="photo-card"
+                 onclick="showPhoto('images/photo9.jpg.jpeg','Memory #9 💕')">
+                <img src="images/photo9.jpg.jpeg" alt="Memory 9">
+                <p>Memory #9 💕</p>
+            </div>
+
+            <!-- PHOTO 10 -->
+            <div class="photo-card"
+                 onclick="showPhoto('images/photo10.jpg.jpeg','Memory #10 🐼')">
+                <img src="images/photo10.jpg.jpeg" alt="Memory 10">
+                <p>Memory #10 🐼</p>
+            </div>
+
+        </div>
+
+        <button onclick="nextSlide(4)">
+            Panda Says Next → 🐼
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- SLIDE 4 -->
+<!-- ============================= -->
+
+<section class="slide" id="slide4">
+
+    <div class="panda panda1">🐼🍜</div>
+    <div class="panda panda2">🐼💤</div>
+    <div class="panda panda3">🐼🌸</div>
+    <div class="panda panda4">🐼💗</div>
+    <div class="panda panda5">🐼🎈</div>
+
+    <div class="funny">
+
+        <h1>
+            Things Pandas Have Noticed About You 😂
+        </h1>
+
+        <div class="funny-boxes">
+
+            <!-- FOOD -->
+            <div
+                class="funny-box"
+                onclick="showPhoto(
+                    'images/food.jpg.jpeg',
+                    'Food first. Everything else later. 🍜'
+                )"
+            >
+
+                🍜<br><br>
+
+                Food first.<br>
+                Everything else later.
+
+                <br><br>
+
+                <small>👆 Tap me</small>
+
+            </div>
+
+            <!-- SLEEP -->
+            <div
+                class="funny-box"
+                onclick="showPhoto(
+                    'images/sleep.jpg.jpeg',
+                    'Sleep is not a hobby. It is a lifestyle. 😴'
+                )"
+            >
+
+                😴<br><br>
+
+                Sleep is not a hobby.<br>
+                It's a lifestyle.
+
+                <br><br>
+
+                <small>👆 Tap me</small>
+
+            </div>
+
+            <!-- CUTE -->
+            <div
+                class="funny-box"
+                onclick="showPhoto(
+                    'images/cute.jpg.jpeg',
+                    'Cuteness level: Completely unfair. 🐼'
+                )"
+            >
+
+                🐼<br><br>
+
+                Cuteness level:<br>
+                Completely unfair.
+
+                <br><br>
+
+                <small>👆 Tap me</small>
+
+            </div>
+
+        </div>
+
+        <button onclick="nextSlide(5)">
+            Panda Has One More Thing →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- PHOTO POPUP -->
+<!-- ============================= -->
+
+<div
+    class="photo-popup"
+    id="photoPopup"
+    onclick="closePhoto(event)"
+>
+
+    <div
+        class="popup-content"
+        onclick="event.stopPropagation()"
+    >
+
+        <img
+            id="popupImage"
+            src=""
+            alt="Funny photo"
+        >
+
+        <div
+            class="popup-title"
+            id="popupTitle"
+        ></div>
+
+        <button
+            class="close-popup"
+            onclick="closePhoto()"
+        >
+            Close 🐼
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ============================= -->
+<!-- SLIDE 5 -->
+<!-- ============================= -->
+
+<section class="slide" id="slide5">
+
+    <div class="panda panda1">🐼💌</div>
+    <div class="panda panda2">🐼🌸</div>
+    <div class="panda panda3">🐼❤️</div>
+    <div class="panda panda4">🐼🎀</div>
+    <div class="panda panda5">🐼✨</div>
+
+    <div class="note">
+
+        <div class="note-paper">
+
+            <h1>💌 A Little Note</h1>
+
+            <p>
+                Somewhere between all the random moments,
+                silly conversations, laughs and little memories,
+                you became someone really special to me.
+                <br><br>
+
+                I don't need a big reason to celebrate you.
+                You being you is already enough.
+                <br><br>
+
+                So this little panda journey is just my tiny way
+                of making your birthday a little more memorable.
+                I hope whenever you see this, it brings a smile
+                to your face. 🐼❤️
+                <br><br>
+
+                Keep being your crazy self,
+                keep smiling,
+                and never forget how special you are. ✨
+            </p>
+
+        </div>
+
+        <button onclick="nextSlide(6)">
+            Final Surprise → ✨
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- SLIDE 6 -->
+<!-- ============================= -->
+
+<section class="slide" id="slide6">
+
+    <div class="panda panda1">🐼🎂</div>
+    <div class="panda panda2">🐼❤️</div>
+    <div class="panda panda3">🐼🎈</div>
+    <div class="panda panda4">🐼✨</div>
+    <div class="panda panda5">🐼🌸</div>
+
+    <div class="final">
+
+        <div class="cake">
+            🎂
+        </div>
+
+        <h1>
+            Happy Birthday Mauuuuu ❤️🥹
+        </h1>
+
+        <p>
+            I honestly don't know how to explain how happy I am
+            that you are in my life. From all our stupid little
+            fights to our random conversations, from annoying each
+            other for absolutely no reason to suddenly becoming
+            all cute again, every little thing with you has become
+            so special to me. 😂❤️
+            <br><br>
+
+            Sometimes we fight like we are never going to talk again,
+            and then after some time you become my pyaarsa chotusa
+            Mauuu again, with your extra natki and that cute attitude
+            that I can never stay angry at for too long. 😚
+            You are literally the perfect combination of cute,
+            annoying and adorable, and somehow I love every single
+            version of you.
+            <br><br>
+
+            My Shemduu, you have this special talent of making me
+            smile even when I'm not in the mood, and honestly,
+            I don't think you even realise how much happiness you
+            bring into my life. 🥹❤️
+            <br><br>
+
+            And my Bedukk Bachaa, please don't think I'm going to
+            let you become too mature after growing up 😂 because
+            I need my same silly, cute and natki Mauuu.
+            I love all those small things about you — your random
+            talks, your little drama, your unnecessary anger,
+            your cute way of getting upset, and then the way you
+            slowly become normal again as if nothing happened. 😂🫶🏻
+            <br><br>
+
+            Sometimes I just look at you and think,
+            "How can one person be this cute and this much of a
+            headache at the same time?" 😭❤️
+            But that's you, my Bachaa, and I wouldn't want you
+            to be any different.
+            <br><br>
+
+            We may fight, misunderstand each other, or have days
+            when things don't feel perfect, but I think that's also
+            a part of what makes our bond real.
+            <br><br>
+
+            Shemduu, on your birthday, I just want you to know
+            that you are genuinely very precious to me. ❤️
+            I hope you always keep that beautiful smile of yours,
+            keep doing your natki, keep annoying me, keep being
+            my little Bedukk Bachaa, and most importantly,
+            keep being the person you are.
+            <br><br>
+
+            I want to see you happy, achieving everything you dream
+            about, enjoying every little moment and becoming the
+            person you want to be.
+            <br><br>
+
+            Happy Birthday once again, my pyaarsa Mauuu,
+            my Shemduu, my Bedukk Bachaa, my favourite natki person. 😚❤️
+            <br><br>
+
+            <strong>
+                Happy Birthdayyy Mauuuuu 🥹❤️<br>
+                Love youuu alott, Shemduuuu 😚🫶🏻<br>
+                Stay my same cute, extra-natki Bedukk Bachaa forever. 🧿❤️
+            </strong>
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- JAVASCRIPT -->
+<!-- ============================= -->
+
+<script>
+
+/* ============================= */
+/* PIN */
+/* ============================= */
+
+function unlock() {
+
+    const enteredPin =
+        document.getElementById("pin").value;
+
+    const error =
+        document.getElementById("error");
+
+    const correctPin = "1509";
+
+    if (enteredPin === correctPin) {
+
+        error.innerHTML = "Unlocked! 🐼✨";
+
+        setTimeout(function() {
+            nextSlide(2);
+        }, 1000);
+
+    } else {
+
+        error.innerHTML =
+            "Wrong PIN... Panda is judging you 🤨🐼";
+
+    }
+}
+
+/* ============================= */
+/* SLIDE CHANGER */
+/* ============================= */
+
+function nextSlide(number) {
+
+    document
+        .querySelectorAll(".slide")
+        .forEach(function(slide) {
+            slide.classList.remove("active");
+        });
+
+    const targetSlide =
+        document.getElementById("slide" + number);
+
+    if (targetSlide) {
+        targetSlide.classList.add("active");
+    }
+}
+
+/* ============================= */
+/* GIFT OPENING */
+/* ============================= */
+
+function openGift() {
+
+    const gift =
+        document.getElementById("gift");
+
+    const message =
+        document.getElementById("giftMessage");
+
+    const next =
+        document.getElementById("giftNext");
+
+    gift.classList.add("open");
+
+    setTimeout(function() {
+        message.classList.add("show");
+    }, 600);
+
+    setTimeout(function() {
+        next.style.display = "inline-block";
+    }, 1300);
+}
+
+/* ============================= */
+/* PHOTO POPUP */
+/* ============================= */
+
+function showPhoto(image, title) {
+
+    const popupImage =
+        document.getElementById("popupImage");
+
+    const popupTitle =
+        document.getElementById("popupTitle");
+
+    const popup =
+        document.getElementById("photoPopup");
+
+    popupImage.src = image;
+    popupTitle.innerHTML = title;
+
+    popup.classList.add("show");
+}
+
+/* ============================= */
+/* CLOSE PHOTO */
+/* ============================= */
+
+function closePhoto(event) {
+
+    if (
+        event &&
+        event.target !== document.getElementById("photoPopup")
+    ) {
+        return;
+    }
+
+    document
+        .getElementById("photoPopup")
+        .classList.remove("show");
+}
+
+/* ============================= */
+/* KEYBOARD ESC TO CLOSE PHOTO */
+/* ============================= */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        document
+            .getElementById("photoPopup")
+            .classList.remove("show");
+    }
+
+});
+
+</script>
+
+</body>
+</html>
